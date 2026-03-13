@@ -4,8 +4,8 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./features/deadline-setup/deadline-setup.component').then(
-        (m) => m.DeadlineSetupComponent,
+      import('./features/countdown/countdown.component').then(
+        (m) => m.CountdownComponent,
       ),
   },
   {
@@ -13,4 +13,5 @@ export const routes: Routes = [
     redirectTo: '',
   },
 ];
+
 

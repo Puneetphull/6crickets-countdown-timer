@@ -1,0 +1,53 @@
+<main
+  class="min-h-screen bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4"
+>
+  <div
+    class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-10 w-full max-w-md shadow-2xl"
+  >
+    <p class="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-2 text-center">
+      6crickets &middot; Deadline Countdown
+    </p>
+    <h1 class="text-2xl font-bold text-white text-center mb-2">Set your deadline</h1>
+    <p class="text-slate-400 text-sm text-center mb-8">
+      This can only be set once and cannot be changed.
+    </p>
+
+    <form (ngSubmit)="submit()" novalidate>
+      <div class="mb-6">
+        <label for="deadline" class="block text-sm font-medium text-slate-300 mb-2">
+          Deadline date &amp; time
+        </label>
+        <input
+          id="deadline"
+          type="datetime-local"
+          [formControl]="deadlineControl"
+          [min]="minDatetime"
+          class="w-full bg-white/10 border rounded-xl px-4 py-3 text-white placeholder-slate-500
+                 focus:outline-none focus:ring-2 transition-colors
+                 scheme-dark"
+          [class.border-white/20]="!deadlineControl.invalid || !deadlineControl.touched"
+          [class.focus:ring-emerald-500]="!deadlineControl.invalid || !deadlineControl.touched"
+          [class.border-red-500]="deadlineControl.invalid && deadlineControl.touched"
+          [class.focus:ring-red-500]="deadlineControl.invalid && deadlineControl.touched"
+        />
+
+        @if (deadlineControl.touched && deadlineControl.hasError('required')) {
+          <p class="text-red-400 text-xs mt-2">Please select a date and time.</p>
+        }
+        @if (deadlineControl.touched && deadlineControl.hasError('pastDate')) {
+          <p class="text-red-400 text-xs mt-2">Deadline must be in the future.</p>
+        }
+      </div>
+
+      <button
+        type="submit"
+        class="w-full bg-emerald-500 hover:bg-emerald-400 active:bg-emerald-600
+               text-white font-semibold py-3 px-6 rounded-xl transition-colors
+               focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2
+               focus:ring-offset-slate-900 cursor-pointer"
+      >
+        Start Countdown
+      </button>
+    </form>
+  </div>
+</main>

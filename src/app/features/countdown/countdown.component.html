@@ -1,0 +1,43 @@
+<main
+  class="min-h-screen bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4"
+>
+  @if (countdown.isLoading()) {
+    <!-- Loading state -->
+    <div class="text-center" role="status" aria-label="Loading deadline data">
+      <div
+        class="w-16 h-16 border-4 border-emerald-400 border-t-transparent rounded-full animate-spin mx-auto mb-6"
+      ></div>
+      <p class="text-slate-400 text-lg tracking-wide">Fetching deadline...</p>
+    </div>
+  } @else if (countdown.hasError()) {
+    <!-- Error state -->
+    <div
+      class="bg-red-500/10 border border-red-500/30 rounded-2xl p-10 text-center max-w-md w-full"
+      role="alert"
+    >
+      <p class="text-red-400 text-2xl font-semibold">Failed to load deadline</p>
+      <p class="text-slate-400 mt-3 text-sm">Please refresh the page or try again later.</p>
+    </div>
+  } @else {
+    <!-- Countdown state -->
+    <div
+      class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-12 text-center shadow-2xl max-w-lg w-full"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      <p class="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-8">
+        6crickets &middot; Deadline Countdown
+      </p>
+
+      @if (countdown.secondsLeft() > 0) {
+        <p class="text-emerald-400 text-7xl font-bold tabular-nums leading-none">
+          {{ countdown.secondsLeft() | number }}
+        </p>
+        <p class="text-slate-400 text-xl mt-5 font-light">seconds left to deadline</p>
+      } @else {
+        <p class="text-red-400 text-5xl font-bold">Deadline Passed!</p>
+        <p class="text-slate-500 text-lg mt-4">The countdown has ended.</p>
+      }
+    </div>
+  }
+</main>

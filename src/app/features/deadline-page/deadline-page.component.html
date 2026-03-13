@@ -1,0 +1,8 @@
+@if (!deadlineSet()) {
+  <!-- Setup view: shown only until deadline is saved -->
+  <app-deadline-setup (deadlineSaved)="onDeadlineSaved($event)" />
+} @else {
+  <!-- Countdown view: CountdownComponent is created here, so CountdownService
+       boots at this exact moment — timer starts immediately, zero delay -->
+  <app-countdown />
+}

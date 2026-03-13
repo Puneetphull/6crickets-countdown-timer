@@ -2,6 +2,8 @@
 
 A performance-optimized Angular 21 countdown timer. On load it fetches the seconds remaining to a fixed deadline from an API and displays a live decrementing counter that updates every second.
 
+**Live demo:** [https://6crickets.netlify.app](https://6crickets.netlify.app)
+
 ---
 
 ## Table of Contents
